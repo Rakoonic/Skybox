@@ -2,29 +2,22 @@ Skybox
 ======
 
 Self-contained skybox module for Corona SDK
-
 Latest update features:
 ------
-
 * Can now be a group, container or snapshot.
 * More options for specifying the faces of the skybox (including omitting faces you don't want).
 * No longer does a full redraw if the angles don't change (unless you wish to force it).
-
 How to create a skybox:
 ======
-
 Step 1: Include the skybox lib:
 ------
-
 ```lua
 local skyboxClass = require( "libs.skybox" )
 ```
 where 'libs.skybox' is the path to my library, wherever you installed it.
- 
-Step 2: Create a skybox object:
+ Step 2: Create a skybox object:
 ------
- 
-At its most basic you could do the following:
+ At its most basic you could do the following:
 
 ```Lua
 local skyboxObj = skyboxClass.new{
@@ -71,32 +64,30 @@ There are various parameters that you can change or supply, broken down into var
  
 The images property is a table that itself can contain various properties, including:
 
-	* path = The optional path to where the images reside. Defaults to "".
-	* file = The optional shared root of the file name for the images. Defaults to "".
-	* extension = The optional file extension of the images. Can be "png" or "jpg". Defaults to "jpg" if needed.
-	* faces = An optional table that can either be a list of faces to include (IE any not mention are not drawn), or a table containing key/value pairs listing both the faces to include, and their file. In either case, the faces are 'front', 'back', 'left', 'right', 'up' and 'down'.
-	Individual file names normally are built up using:
- 
- 	filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
- 
-	where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
-	The exception to this is if the images.faces property is supplied as a set of key/value pairs.
-	In this case, for each face in this table, the filename is built up using:
- 
-	filename = images.path .. images.file .. images.faces[ <face> ]
+* path = The optional path to where the images reside. Defaults to "".
+* file = The optional shared root of the file name for the images. Defaults to "".
+* extension = The optional file extension of the images. Can be "png" or "jpg". Defaults to "jpg" if needed.
+* faces = An optional table that can either be a list of faces to include (IE any not mention are not drawn), or a table containing key/value pairs listing both the faces to include, and their file. In either case, the faces are 'front', 'back', 'left', 'right', 'up' and 'down'.
+Individual file names normally are built up using:
 
-	In this case, images.extension is appended only if set.
-	This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
+	filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
+
+where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
+The exception to this is if the images.faces property is supplied as a set of key/value pairs.
+In this case, for each face in this table, the filename is built up using:
+
+filename = images.path .. images.file .. images.faces[ <face> ]
+
+In this case, images.extension is appended only if set.
+This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
 
 **Miscellaneous properties:**
 
-	* subdivide = How many times to subdivide each face along both axes. This means you will end up with subdivide * subdivide cells per faces, so keep this value as low as possible. Defaults to 4.
-	* zCull = At what point to cull faces based on any of their corners being closer than this value. The nearer to zero it is, the less likely you are to see holes. Defaults to 0.001.
-	* zOffset = How far to push the skybox further away from the camera. Can help to remove 'holes', but with the added price of creating more distortion the larger the value. Ideally tweaked only as a last resort. Defaults to 0.
-
+* subdivide = How many times to subdivide each face along both axes. This means you will end up with subdivide * subdivide cells per faces, so keep this value as low as possible. Defaults to 4.
+* zCull = At what point to cull faces based on any of their corners being closer than this value. The nearer to zero it is, the less likely you are to see holes. Defaults to 0.001.
+* zOffset = How far to push the skybox further away from the camera. Can help to remove 'holes', but with the added price of creating more distortion the larger the value. Ideally tweaked only as a last resort. Defaults to 0.
 Optional step 3: Update the skybox object
-------
-	 
+------ 
 If you wish to change the angles, then you do so using the following code:
 ```lua
 skyboxObj:update( yAngle, xAngle )
@@ -115,7 +106,6 @@ local didReallyUpdate = skyboxObj:update()
 ```
 Changing the field of view dynamically:
 ======
-
 Simply call :setFieldOfView( angle ) as follows:
 ```lua
 skyboxObj:setFieldOfView( angle )
