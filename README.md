@@ -19,7 +19,7 @@ Step 1: Include the skybox lib:
 
 local skyboxClass = require( "libs.skybox" )
 
-where 'libs.skybox' is the path to my library, wherever you installed it.
+- where 'libs.skybox' is the path to my library, wherever you installed it.
  
 Step 2: Create a skybox object:
 ======
@@ -27,12 +27,12 @@ Step 2: Create a skybox object:
 At its most basic you could do the following:
 
 - local skyboxObj = skyboxClass.new{
--    images = {
--       file = "sky",
--       width = 512,
--       height = 512,
--    }
-- }
+    images = {
+       file = "sky",
+       width = 512,
+       height = 512,
+    }
+}
 
 This is the minimum to get up and running and would assume the following 6 images are all located in the root of your project folder and each are 512 x 512 pixels in size:
 
