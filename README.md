@@ -102,8 +102,7 @@ Note that snapshots automatically get invalidated upon successful redraw.
 
 If you wish to know whether a redraw call was actually processed or not, then capture the result from the :update() function - true means the skybox was actually updated, while false means it wasn't (this happens if you call the :update() feature with the same angle values as the previous time it was updated).
 ```lua
-local didReallyUpdate = skyboxObj:update()
-```
+local didReallyUpdate = skyboxObj:update()```
 Changing the field of view dynamically:
 ======
 Simply call :setFieldOfView( angle ) as follows:
