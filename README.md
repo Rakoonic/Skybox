@@ -74,14 +74,14 @@ Individual file names normally are built up using:
 
 	filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
 
-where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
-The exception to this is if the images.faces property is supplied as a set of key/value pairs.
-In this case, for each face in this table, the filename is built up using:
+   where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
+   The exception to this is if the images.faces property is supplied as a set of key/value pairs.
+   In this case, for each face in this table, the filename is built up using:
 
-filename = images.path .. images.file .. images.faces[ <face> ]
+   filename = images.path .. images.file .. images.faces[ <face> ]
 
-In this case, images.extension is appended only if set.
-This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
+   In this case, images.extension is appended only if set.
+   This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
 
 **Miscellaneous properties:**
 
