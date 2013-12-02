@@ -9,12 +9,14 @@ Latest update features:
 * No longer does a full redraw if the angles don't change (unless you wish to force it).
 How to create a skybox:
 ======
+
 Step 1: Include the skybox lib:
 ------
 ```lua
 local skyboxClass = require( "libs.skybox" )
 ```
 where 'libs.skybox' is the path to my library, wherever you installed it.
+
  Step 2: Create a skybox object:
 ------
  At its most basic you could do the following:
@@ -86,6 +88,7 @@ This last way of specifying the faces is the most powerful, and in fact can be u
 * subdivide = How many times to subdivide each face along both axes. This means you will end up with subdivide * subdivide cells per faces, so keep this value as low as possible. Defaults to 4.
 * zCull = At what point to cull faces based on any of their corners being closer than this value. The nearer to zero it is, the less likely you are to see holes. Defaults to 0.001.
 * zOffset = How far to push the skybox further away from the camera. Can help to remove 'holes', but with the added price of creating more distortion the larger the value. Ideally tweaked only as a last resort. Defaults to 0.
+
 Optional step 3: Update the skybox object
 ------ 
 If you wish to change the angles, then you do so using the following code:
@@ -103,7 +106,8 @@ Note that snapshots automatically get invalidated upon successful redraw.
 If you wish to know whether a redraw call was actually processed or not, then capture the result from the :update() function - true means the skybox was actually updated, while false means it wasn't (this happens if you call the :update() feature with the same angle values as the previous time it was updated).
 ```lua
 local didReallyUpdate = skyboxObj:update()
-```Changing the field of view dynamically:
+```
+Changing the field of view dynamically:
 ======
 Simply call :setFieldOfView( angle ) as follows:
 ```lua
