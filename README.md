@@ -3,9 +3,8 @@ Skybox
 
 Self-contained skybox module for Corona SDK
 
-
 Latest update features:
-======
+------
 
 * Can now be a group, container or snapshot.
 * More options for specifying the faces of the skybox (including omitting faces you don't want).
@@ -48,18 +47,18 @@ This is the minimum to get up and running and would assume the following 6 image
 
 There are various parameters that you can change or supply, broken down into various related functionality:
  
-**General object properties:
+**General object properties:**
 
 * objType = What type of object is used as the base. This value can be either 'group', 'container', or 'snapshot'. Defaults to 'group'.
 * parent = A group (or similar) that this skybox object will be inserted into automatically upon creation. Defaults to nothing.
 
-**View properties:
+**View properties:**
 
 * fov = Field of view, measured in degrees along the horizontal axis. Defaults to 90.
 * xAngle = Starting X angle. Defaults to 0.
 * yAngle = Starting Y angle. Defaults to 0.
 
-*Window properties\*:
+**Window properties\*:**
 
 * left = Left edge of the window\*
 * top = Top edge of the window*\*
@@ -71,19 +70,20 @@ There are various parameters that you can change or supply, broken down into var
 **Images properties:**
  
 The images property is a table that itself can contain various properties, including:
+
 	* path = The optional path to where the images reside. Defaults to "".
 	* file = The optional shared root of the file name for the images. Defaults to "".
 	* extension = The optional file extension of the images. Can be "png" or "jpg". Defaults to "jpg" if needed.
 	* faces = An optional table that can either be a list of faces to include (IE any not mention are not drawn), or a table containing key/value pairs listing both the faces to include, and their file. In either case, the faces are 'front', 'back', 'left', 'right', 'up' and 'down'.
 	Individual file names normally are built up using:
  
- 	- filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
+ 	filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
  
 	where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
 	The exception to this is if the images.faces property is supplied as a set of key/value pairs.
 	In this case, for each face in this table, the filename is built up using:
  
-	- filename = images.path .. images.file .. images.faces[ <face> ]
+	filename = images.path .. images.file .. images.faces[ <face> ]
 
 	In this case, images.extension is appended only if set.
 	This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
