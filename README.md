@@ -68,7 +68,7 @@ There are various parameters that you can change or supply, broken down into var
 
 \*Only containers and snapshots will actually clip to these values. Groups will have some of the skybox poking out, but the values used will be the same as if it were clipped.
  
-**Images properties:
+**Images properties:**
  
 The images property is a table that itself can contain various properties, including:
 	* path = The optional path to where the images reside. Defaults to "".
@@ -88,7 +88,7 @@ The images property is a table that itself can contain various properties, inclu
 	In this case, images.extension is appended only if set.
 	This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
 
-**Miscellaneous properties:
+**Miscellaneous properties:**
 
 	* subdivide = How many times to subdivide each face along both axes. This means you will end up with subdivide * subdivide cells per faces, so keep this value as low as possible. Defaults to 4.
 	* zCull = At what point to cull faces based on any of their corners being closer than this value. The nearer to zero it is, the less likely you are to see holes. Defaults to 0.001.
