@@ -33,6 +33,9 @@ function scene:createScene( event )
 	bg.x     = __G.screenWidth / 2
 	bg.y     = __G.screenHeight / 2
 	
+	-- Randomise the randomness
+	math.randomseed( system.getTimer() )
+
 end
 function scene:enterScene( event )
 

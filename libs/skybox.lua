@@ -44,6 +44,7 @@ function class.new( params )
 		objType        = "group"
 	end
 	local snapshot = self._snapshot
+	if params.parent then params.parent:insert( self ) ; end
 	self.x       = x
 	self.y       = y
 	self.objType = objType
@@ -51,10 +52,6 @@ function class.new( params )
 	-- Add in functions
 	self.update         = class.update
 	self.setFieldOfView = class.setFieldOfView
-
-	-- Field of view
-	self._width = width
-	self:setFieldOfView( params.fov or 90 )
 
 	-- Set up values
 	self.xAngle     = params.xAngle or 0
@@ -195,8 +192,9 @@ function class.new( params )
 		self._faces[ k ] = face
 	end
 
-	-- Set up
-	self:update()
+	-- Set the field of view (which also forces an intial update)
+	self._width = width
+	self:setFieldOfView( params.fov or 90 )
 
 	-- Return the object	
 	return self
@@ -208,6 +206,9 @@ function class:setFieldOfView( angle )
 	-- Calculate scale based on field of view angle and width of window
 	self.fov          = math.min( math.max( 1, angle ), 170 )
 	self._screenScale = self._width / 2 / math.tan( self.fov / 2 * mDegToRad )
+
+	-- Set up
+	return self:update()
 
 end
 

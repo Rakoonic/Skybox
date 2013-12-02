@@ -6,26 +6,28 @@ local skyboxClass = require( "libs.skybox" )
 local storyboard  = require( "storyboard" )
 local scene       = storyboard.newScene()
 
-local skybox
+local setUpSkybox
 
-local xAngle, yAngle = 40, 0
+local skybox
+local yAngle, xAngle
 
 --------------------------------------------------------------
 -- SET UP ----------------------------------------------------
 
-function setUp( group )
+function setUpSkybox( group )
 
 	local border = 25
 
 	-- Create a sky box
-	skybox = skyboxClass.new{
+	yAngle, xAngle = 0, 50
+	skybox         = skyboxClass.new{
 
 		-- Object properties
 		objType = "snapshot",
 		parent  = group,
 
 		-- View
---		fov    = 50,
+		fov    = 80,
 		xAngle = xAngle,
 		yAngle = yAngle,
 
@@ -46,44 +48,25 @@ function setUp( group )
 			-- Size of each image - must be the same
 			width  = 512,
 			height = 512,
-
---[[
-			-- Optional list of faces to use
-			faces = { "front", "back", "left", "right" },
---]]
-
---[[
-			-- Optional list of faces and their images
-			faces = {
-				front = "-front",
-				back  = "-back",
-				left  = "-left",
-				right = "-right",
-			},
---]]
 		},
-
-		-- Misc
---		subdivide = 10,
---		zCull     = 0.1,
---		zOffset   = 0.2,
 	}
 
-	-- If you chose snapshot, then apply a filter
-	if skybox.objType == "snapshot" then
---		skybox.fill.effect          = "filter.crystallize"
---		skybox.fill.effect.numTiles = 64
-
---		skybox.fill.effect = "filter.frostedGlass"
-
---		skybox.fill.effect           = "filter.zoomBlur"
---		skybox.fill.effect.intensity = 2
-
+	-- Apply a random filter
+	local effect = math.random( 6 )
+	if effect == 1 then
+		skybox.fill.effect          = "filter.crystallize"
+		skybox.fill.effect.numTiles = 64
+	elseif effect == 2 then
+		skybox.fill.effect = "filter.frostedGlass"
+	elseif effect == 3 then
+		skybox.fill.effect           = "filter.zoomBlur"
+		skybox.fill.effect.intensity = 2
+	elseif effect == 4 then
 		skybox.fill.effect = "filter.vignette"
-
---		skybox.fill.effect = "filter.bloom"
-
---		skybox.fill.effect = "filter.sobel"
+	elseif effect == 5 then
+		skybox.fill.effect = "filter.bloom"
+	elseif effect == 6 then
+		skybox.fill.effect = "filter.sobel"
 	end
 
 end
@@ -105,8 +88,18 @@ end
 
 function scene:createScene( event )
 	
-	setUp( self.view )
+	-- Set up the skybox
+	setUpSkybox( self.view )
 	
+	-- Add in clickable area to return to menu
+	local rect         = display.newRect( self.view, display.contentWidth / 2, display.contentHeight / 2, display.contentWidth, display.contentHeight )
+	rect.isVisible     = false
+	rect.isHitTestable = true
+	rect:addEventListener( "tap", function()
+			storyboard.gotoScene( "code.menu", __G.sbFade )
+		end
+	)
+
 end
 function scene:enterScene( event )
 
@@ -122,7 +115,7 @@ function scene:exitScene( event )
 end
 function scene:didExitScene( event )
 
-	storyboard.purgeScene( "code.game" )
+	storyboard.purgeScene( "code.example3" )
 
 end
 

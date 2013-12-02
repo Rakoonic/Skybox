@@ -61,83 +61,27 @@ function scene:createScene( event )
 
 	local group = self.view
 
---[[
-	-- Create help
-	local text            = display.newText( group, "Top left button = Return to menu.\nBottom left buttons = steer.\nBottom right buttons = accelerate/brake.\nTop right button = toggle view rotation on/off.", 0, 0, 500 , 0, nil, 20  )
-	text.x                = __G.screenWidth / 2
-	text.y                = 75 
-
-	-- Create blur buttons
-	xScale                = -250
-	local text            = display.newText( group, "1) Blur (top speed only):", 0, 0, nil, 20 )
-	text.x                = __G.screenWidth / 2 + xScale 
-	text.y                = 200 
-	local pixelateOptions = { { "None", 0 }, { "0.5", 0.5 }, { "0.65", 0.65 }, { "0.8", 0.8 } }
-	for i = 1, #pixelateOptions do
-		local option = pixelateOptions[ i ]
-		local button = newbutton{
-			parent    = group,
-			x         = __G.screenWidth / 2 + xScale,
-			y         = ( 300 + ( i - 1 ) * 75 ),
-			width     = 200 ,
-			height    = 60 ,
-
-			label     = option[ 1 ],
-			labelSize = 25 ,
-			onRelease = function() blur = option[ 2 ] ; end,
-		}
-	end
-
-	-- Create pixelate buttons
+	-- Create examples buttons
 	xScale                = 0
-	local text            = display.newText( group, "2) Pixelation:", 0, 0, nil, 20  )
+	local text            = display.newText( group, "Examples (they rotate automatically - click in view to return here):", 0, 0, nil, 14  )
 	text.x                = __G.screenWidth / 2 + xScale 
-	text.y                = 200 
-	local pixelateOptions = { { "0.5", 0.5 }, { "None", 1 }, { "Pixelate x2", 2 }, { "Pixelate x3", 3 }, { "Pixelate x4", 4 } }
+	text.y                = 75 
+	local pixelateOptions = { { "Simplest example", "example1" }, { "Container with border, lower field of view, no left or right faces", "example2" }, { "Snapshot with border and random filter", "example3" }, { "No top or bottom faces, high field of view and subdivide to help", "example4" } }
 	for i = 1, #pixelateOptions do
 		local option = pixelateOptions[ i ]
 		local button = newbutton{
 			parent    = group,
 			x         = __G.screenWidth / 2 + xScale,
-			y         = ( 300 + ( i - 1 ) * 75 ),
-			width     = 200 ,
-			height    = 60 ,
-
+			y         = ( 125 + ( i - 1 ) * 40 ),
+			width     = 400 ,
+			height    = 30 ,
 			label     = option[ 1 ],
-			labelSize = 25 ,
-			onRelease = function() pixelSize = option[ 2 ] ; end,
-		}
-	end
---]]
-
-	-- Create object quantity buttons
-	xScale                = 250
-	local text            = display.newText( group, "3) Objects quantity:", 0, 0, nil, 20  )
-	text.x                = __G.screenWidth / 2 + xScale 
-	text.y                = 200 
-	local pixelateOptions = { { "x1", 0 }, { "x2", 1 }, { "x3", 2 }, { "x4", 3 } }
-	for i = 1, #pixelateOptions do
-		local option = pixelateOptions[ i ]
-		local button = newbutton{
-			parent    = group,
-			x         = __G.screenWidth / 2 + xScale,
-			y         = ( 300 + ( i - 1 ) * 75 ),
-			width     = 200 ,
-			height    = 60 ,
-
-			label     = option[ 1 ],
-			labelSize = 25 ,
+			labelSize = 12 ,
 			onRelease = function()
-				__G.sbFade.params = { blur = blur, pixelSize = pixelSize, objQuantity = option[ 2 ] }
-				storyboard.gotoScene( "code.game", __G.sbFade )
+				storyboard.gotoScene( "code." .. option[ 2 ], __G.sbFade )
 			end,
 		}
 	end
-
-end
-function scene:didExitScene( event )
-
-	storyboard.purgeScene( "code.menu" )
 
 end
 
@@ -145,7 +89,6 @@ end
 -- STORYBOARD LISTENERS --------------------------------------
 
 scene:addEventListener( "createScene", scene )
-scene:addEventListener( "didExitScene", scene )
 
 --------------------------------------------------------------
 -- RETURN STORYBOARD OBJECT ----------------------------------
