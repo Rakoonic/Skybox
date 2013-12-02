@@ -15,14 +15,15 @@ How to create a skybox:
 ======
 
 Step 1: Include the skybox lib:
-======
+------
 
+```lua
 local skyboxClass = require( "libs.skybox" )
-
-- where 'libs.skybox' is the path to my library, wherever you installed it.
+```
+where 'libs.skybox' is the path to my library, wherever you installed it.
  
 Step 2: Create a skybox object:
-======
+------
  
 At its most basic you could do the following:
 
@@ -58,14 +59,14 @@ View properties:
 * xAngle = Starting X angle. Defaults to 0.
 * yAngle = Starting Y angle. Defaults to 0.
 
-Window properties+:
+Window properties\*:
 
-* left = Left edge of the window*
-* top = Top edge of the window*
-* width = Width of the window*
-* height = Height of the window*
+* left = Left edge of the window\*
+* top = Top edge of the window*\*
+* width = Width of the window\*
+* height = Height of the window\*
 
-+ Only containers and snapshots will actually clip to these values. Groups will have some of the skybox poking out, but the values used will be the same as if it were clipped.
+\*Only containers and snapshots will actually clip to these values. Groups will have some of the skybox poking out, but the values used will be the same as if it were clipped.
  
 Images properties:
  
@@ -76,14 +77,15 @@ The images property is a table that itself can contain various properties, inclu
 	* faces = An optional table that can either be a list of faces to include (IE any not mention are not drawn), or a table containing key/value pairs listing both the faces to include, and their file. In either case, the faces are 'front', 'back', 'left', 'right', 'up' and 'down'.
 	Individual file names normally are built up using:
  
-  	- filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
- 
+ ```lua
+ 	- filename = images.path .. images.file .. <face_identifier> .. "." .. images.extension
+ ```
 	where <face_identifier> is '-front', '-back', '-left', '-right', '-up' or '-down'.
 	The exception to this is if the images.faces property is supplied as a set of key/value pairs.
 	In this case, for each face in this table, the filename is built up using:
-	 
+```lua 
 	- filename = images.path .. images.file .. images.faces[ <face> ]
-	 
+```
 	In this case, images.extension is appended only if set.
 	This last way of specifying the faces is the most powerful, and in fact can be used as an entire replacement for the general path, file and extension properties, or alternatively can be used to specify the face identifiers, if they are different from the defaults.
 
@@ -94,29 +96,29 @@ Miscellaneous properties:
 	* zOffset = How far to push the skybox further away from the camera. Can help to remove 'holes', but with the added price of creating more distortion the larger the value. Ideally tweaked only as a last resort. Defaults to 0.
 
 Optional step 3: Update the skybox object
-======
+------
 	 
 If you wish to change the angles, then you do so using the following code:
-
-- skyboxObj:update( yAngle, xAngle )
-
+```lua
+skyboxObj:update( yAngle, xAngle )
+```
 Where yAngle is the rotation around the Y axis (IE left and right) and xAngle is the rotation around the X axis (IE up and down).
 	 
 Note that if, for whatever reason, you wish to force a redraw then simply call the :update() function without any parameters like so:
-
-- skyboxObj:update()
-
+```lua
+skyboxObj:update()
+```
 Note that snapshots automatically get invalidated upon successful redraw.
 
 If you wish to know whether a redraw call was actually processed or not, then capture the result from the :update() function - true means the skybox was actually updated, while false means it wasn't (this happens if you call the :update() feature with the same angle values as the previous time it was updated).
-
-- local didReallyUpdate = skyboxObj:update()
- 
+```lua
+local didReallyUpdate = skyboxObj:update()
+```
 Changing the field of view dynamically:
 ======
 
 Simply call :setFieldOfView( angle ) as follows:
-
-- skyboxObj:setFieldOfView( angle )
-
+```lua
+skyboxObj:setFieldOfView( angle )
+``l
 where angle is a value between 1 and 170. Note that increasing the field of view may cause more errors at the edges, so always make sure you set up your skybox to work correctly under the widest field of view you intend to use.
