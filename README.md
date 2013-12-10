@@ -4,9 +4,11 @@ Skybox
 Self-contained skybox module for Corona SDK
 Latest update features:
 ------
+
 * Can now be a group, container or snapshot.
 * More options for specifying the faces of the skybox (including omitting faces you don't want).
 * No longer does a full redraw if the angles don't change (unless you wish to force it).
+
 How to create a skybox:
 ======
 
