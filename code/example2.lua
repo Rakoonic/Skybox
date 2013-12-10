@@ -6,7 +6,7 @@ local skyboxClass = require( "libs.skybox" )
 local storyboard  = require( "storyboard" )
 local scene       = storyboard.newScene()
 
-local setUpSkybox
+local setUpSkybox, update
 
 local skybox
 local yAngle, xAngle
